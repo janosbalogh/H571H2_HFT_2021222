@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\H571H2_HFT_2021222.Logic\H571H2_HFT_2021222.Logic.csproj" />
-    <ProjectReference Include="..\H571H2_HFT_2021222.Models\H571H2_HFT_2021222.Models.csproj" />
-    <ProjectReference Include="..\H571H2_HFT_2021222.Repository\H571H2_HFT_2021222.Repository.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
