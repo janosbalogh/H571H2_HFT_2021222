@@ -13,9 +13,15 @@ namespace H571H2_HFT_2021222.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [StringLength(240)]
+        [Required]
         public string Name { get; set; }
+        [Required]
         public int YearOfBirth { get; set; }
-        public int companyID { get; set; }
+        public int CompanyID { get; set; }
+        [NotMapped]
+        public virtual Company Company { get; set; }
 
     }
 }
