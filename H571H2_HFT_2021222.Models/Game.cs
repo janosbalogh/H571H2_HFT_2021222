@@ -12,7 +12,7 @@ namespace H571H2_HFT_2021222.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int GameID { get; set; }
 
         [StringLength(240)]
         [Required]
@@ -21,16 +21,38 @@ namespace H571H2_HFT_2021222.Models
         [StringLength(240)]
         [Required]
         public string Genre { get; set; }
-        [Required]
-        public int AllTimePeak { get; set; }
 
         [Required]
-        public int ReleaseYear { get; set; }
+        public int PositiveVote { get; set; }
 
-        public  int CompanyID { get; set; }
+        [Required]
+        public int NegativeVote { get; set; }
+
+        [Required]
+        public int AverageForever { get; set; }
+
+        [Required]
+        public int Average2Weeks { get; set; }
+
+        [Required]
+        public double Price { get; set; }
+
+        [Required]
+        public int RecentConcurrentPeak { get; set; }
+
+        public  int companyID { get; set; }
 
         [NotMapped]
         public virtual Company Company { get; set; }
+
+        public Game()
+        {
+
+        }
+        public Game(string line)
+        {
+
+        }
 
     }
 }

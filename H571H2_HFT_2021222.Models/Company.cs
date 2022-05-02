@@ -12,7 +12,7 @@ namespace H571H2_HFT_2021222.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int CompanyID { get; set; }
 
         [StringLength(240)] 
         [Required]
@@ -27,10 +27,14 @@ namespace H571H2_HFT_2021222.Models
         public virtual Person Executive { get; set; }
 
         [NotMapped]
-        public virtual HashSet<Game> Game { get; set; }
+        public virtual ICollection<Game> Game { get; set; }
         public Company()
         {
-            Game = new HashSet<Game>();
+            
+        }
+        public Company(string line)
+        {
+
         }
     }
 }

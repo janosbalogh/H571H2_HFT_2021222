@@ -12,16 +12,32 @@ namespace H571H2_HFT_2021222.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int PersonID { get; set; }
 
         [StringLength(240)]
         [Required]
         public string Name { get; set; }
+
         [Required]
-        public int YearOfBirth { get; set; }
-        public int CompanyID { get; set; }
+        public int Age { get; set; }
+
+        [Required]
+        public int Salary { get; set; }
+
+        [Required]
+        public int companyID { get; set; }
+
         [NotMapped]
         public virtual Company Company { get; set; }
+
+        public Person()
+        {
+
+        }
+        public Person(string line)
+        {
+
+        }
 
     }
 }
