@@ -1,5 +1,4 @@
 ﻿using H571H2_HFT_2021222.Models;
-using H571H2_HFT_2021222.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,38 +7,31 @@ using System.Threading.Tasks;
 
 namespace H571H2_HFT_2021222.Logic
 {
-    public class PersonLogic : IPersonLogic
+    class PersonLogic : IPersonLogic
     {
-        IRepository<Person> personRepository;
-
-        public PersonLogic(IRepository<Person> personRepository)
-        {
-            this.personRepository = personRepository;
-        }
-
         public void Create(Person item)
         {
-            this.personRepository.Create(item);
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
         {
-            this.personRepository.Delete(id);
+            throw new NotImplementedException();
         }
 
         public Person Read(int id)
         {
-            return this.personRepository.Read(id);
+            throw new NotImplementedException();
         }
 
         public IQueryable<Person> ReadAll()
         {
-            return this.personRepository.ReadAll();
+            throw new NotImplementedException();
         }
 
         public void Update(Person item)
         {
-            this.personRepository.Update(item);
+            throw new NotImplementedException();
         }
     }
 }

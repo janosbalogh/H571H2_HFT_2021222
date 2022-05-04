@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace H571H2_HFT_2021222.Repository
 {
-    public class GameRepository : Repository<Game>, IRepository<Game>
+    class GameRepository : Repository<Game>, IRepository<Game>
     {
         public GameRepository(SteamDbContext ctx) : base(ctx){}
         public override Game Read(int id)
