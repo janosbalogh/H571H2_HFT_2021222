@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace H571H2_HFT_2021222.Logic
 {
-    class GameLogic : IGameLogic
+    public class GameLogic : IGameLogic
     {
         IRepository<Game> gameRepository;
 

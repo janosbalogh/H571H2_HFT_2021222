@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace H571H2_HFT_2021222.Repository
 {
-    class PersonRepository:Repository<Person>, IRepository<Person>
+    public class PersonRepository:Repository<Person>, IRepository<Person>
     {
         public PersonRepository(SteamDbContext ctx) : base(ctx){}
 
