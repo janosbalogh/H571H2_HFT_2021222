@@ -1,4 +1,5 @@
 ﻿using H571H2_HFT_2021222.Logic;
+using H571H2_HFT_2021222.Logic.Classes;
 using H571H2_HFT_2021222.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,13 +9,14 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace H571H2_HFT_2021222.Endpoint.Controllers
+namespace H571H2_HFT_2021222.Endpoint.Controller
 {
     [Route("[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
         IPersonLogic logic;
+        
 
         public PersonController(IPersonLogic logic)
         {

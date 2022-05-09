@@ -28,15 +28,15 @@ namespace H571H2_HFT_2021222.Models
         [Required]
         public int EmployeeCount { get; set; }
 
-        [NotMapped]        
+        [NotMapped]
+        [JsonIgnore]
         public virtual Person Executive { get; set; }
 
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Game> Game { get; set; }
         public Company()
-        {
-            
+        {            
         }
         public Company(string line)
         {
@@ -46,8 +46,6 @@ namespace H571H2_HFT_2021222.Models
             executiveID = int.Parse(split[2]);
             Country = split[3].ToUpper();
             EmployeeCount = int.Parse(split[4]);
-
-
         }
     }
 }

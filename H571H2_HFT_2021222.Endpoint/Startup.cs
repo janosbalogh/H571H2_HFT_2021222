@@ -1,3 +1,6 @@
+using H571H2_HFT_2021222.Logic.Classes;
+using H571H2_HFT_2021222.Models;
+using H571H2_HFT_2021222.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +28,18 @@ namespace H571H2_HFT_2021222.Endpoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<SteamDbContext>();
+
+            services.AddTransient<IRepository<Company>, CompanyRepository>();
+            services.AddTransient<IRepository<Game>, GameRepository>();
+            services.AddTransient<IRepository<Person>, PersonRepository>();
+
+            services.AddTransient<ICompanyLogic, CompanyLogic>();
+            services.AddTransient<IGameLogic, GameLogic>();
+            services.AddTransient<IPersonLogic, PersonLogic>();
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

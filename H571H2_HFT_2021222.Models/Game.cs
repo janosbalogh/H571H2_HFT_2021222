@@ -50,12 +50,11 @@ namespace H571H2_HFT_2021222.Models
         public  int companyID { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Company Company { get; set; }
 
         public Game()
         {
-
         }
         public Game(string line)
         {
