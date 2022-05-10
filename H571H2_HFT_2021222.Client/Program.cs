@@ -121,9 +121,23 @@ namespace H571H2_HFT_2021222.Client
             }
         }
 
+        static void Top3CompanyWithMostGames()
+        {
+            var games = rest.Get<KeyValuePair<string, int>>("stat/Top3CompanyWithMostGames");
+
+            Console.WriteLine("Name" + "\t" + "Games");
+
+            foreach (var item in games)
+            {
+                Console.WriteLine(item.Key + "\t" + item.Value);
+            }
+
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:38231/", "steam");
+            rest = new RestService("http://localhost:38231/", "swagger");
             
 
             var personSubMenu = new ConsoleMenu(args, level: 1)
@@ -138,6 +152,7 @@ namespace H571H2_HFT_2021222.Client
                 .Add("Create", () => Create("Game"))
                 .Add("Delete", () => Delete("Game"))
                 .Add("Update", () => Update("Game"))
+                .Add("Top3", () => Top3CompanyWithMostGames())
                 .Add("Exit", ConsoleMenu.Close);
 
             var companySubMenu = new ConsoleMenu(args, level: 1)
