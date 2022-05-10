@@ -14,5 +14,6 @@ namespace H571H2_HFT_2021222.Logic.Classes
         IQueryable<Game> ReadAll();
         void Update(Game item);
         void Delete(int id);
+        public IEnumerable<KeyValuePair<string, int>> Top3CompanyWithMostGames();
     }
 }
