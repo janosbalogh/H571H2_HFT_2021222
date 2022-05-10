@@ -41,5 +41,14 @@ namespace H571H2_HFT_2021222.Logic.Classes
         {
             this.gameRepository.Update(item);
         }
+
+        public IEnumerable<KeyValuePair<string, int>> Top3CompanyWithMostGames()
+        {
+            return (from x in gameRepository.ReadAll()
+                    group x by x.Company.Name into g
+                    orderby g.Count() descending
+                    select new KeyValuePair<string, int>
+                    (g.Key, g.Count())).Take(3);
+        }
     }
 }
