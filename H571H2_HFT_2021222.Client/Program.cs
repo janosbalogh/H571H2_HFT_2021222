@@ -9,6 +9,8 @@ namespace H571H2_HFT_2021222.Client
     internal class Program
     {
         static RestService rest;
+
+        #region CRUD
         static void Create(string entity)
         {
             if (entity == "Company")
@@ -19,19 +21,27 @@ namespace H571H2_HFT_2021222.Client
                 string country = Console.ReadLine();
                 Console.WriteLine("Enter the number of employees: ");
                 string employees = Console.ReadLine();
-                rest.Post(new Company() { Name = name, Country =country, EmployeeCount=int.Parse(employees) }, "company");
+                rest.Post(new Company() { Name = name, Country = country, EmployeeCount = int.Parse(employees) }, "company");
             }
             else if (entity == "Game")
             {
                 Console.WriteLine("Enter a Game name: ");
-                string name = Console.ReadLine();
-                rest.Post(new Game() { Name = name }, "game");
+                string name = Console.ReadLine(); 
+                Console.WriteLine("Enter a genre: ");
+                string genre = Console.ReadLine();
+                Console.WriteLine("Enter the average player number: ");
+                int average = int.Parse(Console.ReadLine());
+                rest.Post(new Game() { Name = name, Genre = genre, AverageForever = average }, "game");
             }
             else if (entity == "Person")
             {
                 Console.WriteLine("Enter a Person name: ");
                 string name = Console.ReadLine();
-                rest.Post(new Person() { Name = name }, "peron");
+                Console.WriteLine("Enter the person's age: ");
+                int age = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the person's salary: ");
+                int salary = int.Parse(Console.ReadLine());
+                rest.Post(new Person() { Name = name, Age = age, Salary =salary }, "peron");
             }
         }
         static void List(string entity)
@@ -120,20 +130,78 @@ namespace H571H2_HFT_2021222.Client
                 rest.Delete(id, "Person");
             }
         }
+        #endregion
 
+        #region Non-CRUD
         static void Top3CompanyWithMostGames()
         {
-            var games = rest.Get<KeyValuePair<string, int>>("stat/Top3CompanyWithMostGames");
+            var companies = rest.Get<KeyValuePair<string, int>>("stat/Top3CompanyWithMostGames");
 
-            Console.WriteLine("Name" + "\t" + "Games");
+            Console.WriteLine("GameCount" + "\t" + "Name");
 
-            foreach (var item in games)
+            foreach (var item in companies)
             {
-                Console.WriteLine(item.Key + "\t" + item.Value);
+                Console.WriteLine(item.Value + "\t" + item.Key);
             }
 
             Console.ReadLine();
         }
+
+        static void CompaniesWithFpsGames()
+        {
+            var companies = rest.Get<KeyValuePair<string, int>>("stat/CompaniesWithFpsGames");
+
+            Console.WriteLine("ID" + "\t" + "Name");
+
+            foreach (var item in companies)
+            {
+                Console.WriteLine(item.Value + "\t" + item.Key);
+            }
+            Console.ReadLine();
+        }
+
+        static void CompanyNameLongerThan20()
+        {
+            var companies = rest.Get<KeyValuePair<string, int>>("stat/CompanyNameLongerThan20");
+
+            Console.WriteLine("Length" + "\t" + "Name");
+
+            foreach (var item in companies)
+            {
+                Console.WriteLine(item.Value + "\t" + item.Key);
+            }
+            Console.ReadLine();
+
+        }
+
+        static void ExecutiveSalaryAbove1000Employee()
+        {
+            var people = rest.Get<KeyValuePair<string, int>>("stat/ExecutiveSalaryAbove1000Employee");
+
+            Console.WriteLine("Name" + "\t\t" + "Salary");
+
+            foreach (var item in people)
+            {
+                Console.WriteLine(item.Key + "\t\t" + item.Value+ " USD");
+            }
+            Console.ReadLine();
+
+        }
+
+        static void TOP10MostPlayedGamesExecutiveAge() 
+        {
+            var people = rest.Get<KeyValuePair<string, int>>("stat/TOP10MostPlayedGamesExecutiveAge");
+
+            Console.WriteLine("Name" + "\t\t" + "Age");
+
+            foreach (var item in people)
+            {
+                Console.WriteLine(item.Key + "\t\t" + item.Value);
+            }
+            Console.ReadLine();
+        }
+
+        #endregion
 
         static void Main(string[] args)
         {
@@ -152,7 +220,6 @@ namespace H571H2_HFT_2021222.Client
                 .Add("Create", () => Create("Game"))
                 .Add("Delete", () => Delete("Game"))
                 .Add("Update", () => Update("Game"))
-                .Add("Top3", () => Top3CompanyWithMostGames())
                 .Add("Exit", ConsoleMenu.Close);
 
             var companySubMenu = new ConsoleMenu(args, level: 1)
@@ -162,11 +229,19 @@ namespace H571H2_HFT_2021222.Client
                 .Add("Update", () => Update("Company"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var statSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Top3CompanyWithMostGames", () => Top3CompanyWithMostGames())
+                .Add("CompaniesWithFpsGames", () => CompaniesWithFpsGames())
+                .Add("CompanyNameLongerThan20", () => CompanyNameLongerThan20())
+                .Add("ExecutiveSalaryAbove1000Employee", () => ExecutiveSalaryAbove1000Employee())
+                .Add("TOP10MostPlayedGamesExecutiveAge", () => TOP10MostPlayedGamesExecutiveAge())
+                .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("People", () => personSubMenu.Show())
                 .Add("Games", () => gameSubMenu.Show())
                 .Add("Companies", () => companySubMenu.Show())
+                .Add("Stats", () => statSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
