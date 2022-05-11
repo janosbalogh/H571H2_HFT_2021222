@@ -19,6 +19,10 @@ namespace H571H2_HFT_2021222.Logic.Classes
 
         public void Create(Game item)
         {
+            if (item.Name.Length<4)
+            {
+                throw new ArgumentException();
+            }
             this.gameRepository.Create(item);
         }
 
