@@ -13,19 +13,44 @@ namespace H571H2_HFT_2021222.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        IGameLogic logic;
+        IGameLogic gameLogic;
+        IPersonLogic personLogic;
 
-        public StatController(IGameLogic logic)
+        public StatController(IGameLogic logic, IPersonLogic personLogic)
         {
-            this.logic = logic;
+            this.gameLogic = logic;
+            this.personLogic = personLogic;
         }
 
         [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> Top3CompanyWithMostGames()
         {
-            return this.logic.Top3CompanyWithMostGames();
+            return this.gameLogic.Top3CompanyWithMostGames();
         }
 
-        //TODO: List companies that made FPS games
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> CompaniesWithFpsGames()
+        {
+            return this.gameLogic.CompaniesWithFpsGames();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> CompanyNameLongerThan20()
+        {
+            return this.gameLogic.CompanyNameLongerThan20();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> ExecutiveSalaryAbove1000Employee()
+        {
+            return this.personLogic.ExecutiveSalaryAbove1000Employee();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> TOP10MostPlayedGamesExecutiveAge()
+        {
+            return this.gameLogic.TOP10MostPlayedGamesExecutiveAge();
+        }
+
     }
 }

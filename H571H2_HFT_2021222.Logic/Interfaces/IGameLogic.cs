@@ -15,5 +15,9 @@ namespace H571H2_HFT_2021222.Logic.Classes
         void Update(Game item);
         void Delete(int id);
         public IEnumerable<KeyValuePair<string, int>> Top3CompanyWithMostGames();
+        public IEnumerable<KeyValuePair<string, int>> CompaniesWithFpsGames();
+        public IEnumerable<KeyValuePair<string, int>> CompanyNameLongerThan20();
+        public IEnumerable<KeyValuePair<string, int>> TOP10MostPlayedGamesExecutiveAge();
+
     }
 }

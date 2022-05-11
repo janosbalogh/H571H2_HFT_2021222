@@ -41,5 +41,14 @@ namespace H571H2_HFT_2021222.Logic.Classes
         {
             this.personRepository.Update(item);
         }
+
+        public IEnumerable<KeyValuePair<string, int>> ExecutiveSalaryAbove1000Employee()
+        {
+            return from x in personRepository.ReadAll()
+                   where x.Company.EmployeeCount >= 1000
+                   select new KeyValuePair<string, int>
+                   (x.Name, x.Salary);
+        }
+        
     }
 }

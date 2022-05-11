@@ -50,5 +50,30 @@ namespace H571H2_HFT_2021222.Logic.Classes
                     select new KeyValuePair<string, int>
                     (g.Key, g.Count())).Take(3);
         }
+
+        public IEnumerable<KeyValuePair<string, int>> CompaniesWithFpsGames()
+        {
+            return (from x in gameRepository.ReadAll()
+                   where x.Genre.Contains("FPS")
+                   select new KeyValuePair<string, int>(x.Company.Name, x.companyID)).Distinct();
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> CompanyNameLongerThan20()
+        {
+            return from x in gameRepository.ReadAll()
+                   where x.Company.Name.Length > 20
+                   group x by x.Company.Name into g
+                   orderby g.Key.Length descending
+                   select new KeyValuePair<string, int>
+                   (g.Key, g.Key.Length);
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> TOP10MostPlayedGamesExecutiveAge()
+        {
+            return (from x in gameRepository.ReadAll()                    
+                    orderby x.AverageForever descending
+                    select new KeyValuePair<string, int>
+                    (x.Company.Executive.Name, x.Company.Executive.Age)).Take(10).Distinct();
+        }
     }
 }
