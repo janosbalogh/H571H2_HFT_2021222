@@ -19,9 +19,13 @@ namespace H571H2_HFT_2021222.Repository
         public override void Update(Company item)
         {
             var old = Read(item.CompanyID);
+            
             foreach (var prop in old.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(item));
+                if (prop.GetAccessors().FirstOrDefault(t=> t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
             }
             ctx.SaveChanges();
         }
