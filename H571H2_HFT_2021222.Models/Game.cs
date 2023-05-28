@@ -20,31 +20,31 @@ namespace H571H2_HFT_2021222.Models
         public string Name { get; set; }
 
         [StringLength(240)]
-        [Required]
+        //S[Required]
         public string Genre { get; set; }
 
-        [Required]
+        //[Required]
         public int PositiveVote { get; set; }
 
-        [Required]
+        //[Required]
         public int NegativeVote { get; set; }
 
-        [Required]
+       // [Required]
         public int AverageForever { get; set; }
 
-        [Required]
+        //[Required]
         public int Average2Weeks { get; set; }
 
-        [Required]
+        //[Required]
         public double OriginalPrice { get; set; }
 
-        [Required]
+        //[Required]
         public double CurrentPrice { get; set; }
 
-        [Required]
+        //[Required]
         public bool IsDiscounted { get; set; }
 
-        [Required]
+        //[Required]
         public int RecentConcurrentPeak { get; set; }
 
         public  int companyID { get; set; }

@@ -19,13 +19,13 @@ namespace H571H2_HFT_2021222.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        //[Required]
         public int Age { get; set; }
 
-        [Required]
+        //[Required]
         public int Salary { get; set; }
 
-        [Required]
+        //[Required]
         public int companyID { get; set; }
 
         [NotMapped]

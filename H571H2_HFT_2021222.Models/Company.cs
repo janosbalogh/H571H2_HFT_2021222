@@ -20,12 +20,12 @@ namespace H571H2_HFT_2021222.Models
         public string Name { get; set; }
 
         [StringLength(240)]
-        [Required]
+        
         public string Country { get; set; }
 
-        [Required]
+        
         public int executiveID { get; set; }
-        [Required]
+        
         public int EmployeeCount { get; set; }
 
         [NotMapped]
