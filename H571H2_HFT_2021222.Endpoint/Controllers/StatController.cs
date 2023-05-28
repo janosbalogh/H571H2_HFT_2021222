@@ -1,5 +1,7 @@
-﻿using H571H2_HFT_2021222.Logic.Classes;
+﻿using H571H2_HFT_2021222.Endpoint.Services;
+using H571H2_HFT_2021222.Logic.Classes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +17,14 @@ namespace H571H2_HFT_2021222.Endpoint.Controllers
     {
         IGameLogic gameLogic;
         IPersonLogic personLogic;
+        IHubContext<SignalRHub> hub;
 
-        public StatController(IGameLogic logic, IPersonLogic personLogic)
+
+        public StatController(IGameLogic logic, IPersonLogic personLogic, IHubContext<SignalRHub> hub)
         {
             this.gameLogic = logic;
             this.personLogic = personLogic;
+            this.hub = hub;
         }
 
         [HttpGet]

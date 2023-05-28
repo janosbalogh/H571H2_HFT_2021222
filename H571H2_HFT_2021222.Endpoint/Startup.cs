@@ -1,3 +1,4 @@
+using H571H2_HFT_2021222.Endpoint.Services;
 using H571H2_HFT_2021222.Logic.Classes;
 using H571H2_HFT_2021222.Models;
 using H571H2_HFT_2021222.Repository;
@@ -39,7 +40,7 @@ namespace H571H2_HFT_2021222.Endpoint
             services.AddTransient<IGameLogic, GameLogic>();
             services.AddTransient<IPersonLogic, PersonLogic>();
 
-
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,10 +62,11 @@ namespace H571H2_HFT_2021222.Endpoint
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

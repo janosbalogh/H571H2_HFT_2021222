@@ -1,7 +1,9 @@
-﻿using H571H2_HFT_2021222.Logic;
+﻿using H571H2_HFT_2021222.Endpoint.Services;
+using H571H2_HFT_2021222.Logic;
 using H571H2_HFT_2021222.Logic.Classes;
 using H571H2_HFT_2021222.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace H571H2_HFT_2021222.Endpoint.Controller
     public class GameController : ControllerBase
     {
         IGameLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public GameController(IGameLogic logic)
+        public GameController(IGameLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         // GET: api/<GameController>
@@ -41,6 +45,7 @@ namespace H571H2_HFT_2021222.Endpoint.Controller
         public void Create([FromBody] Game value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("GameCreated", value);
         }
 
         // PUT api/<GameController>/5
@@ -48,13 +53,16 @@ namespace H571H2_HFT_2021222.Endpoint.Controller
         public void Put([FromBody] Game value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("GameUpdated", value);
         }
 
         // DELETE api/<GameController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var gameToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("GameDeleted", gameToDelete);
         }
     }
 }
