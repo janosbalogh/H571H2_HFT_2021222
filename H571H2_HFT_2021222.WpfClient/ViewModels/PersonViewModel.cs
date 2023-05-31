@@ -1,6 +1,7 @@
 ﻿using H571H2_HFT_2021222.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,6 +81,9 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
                 People.Add(new Person()
                 {
                     Name = SelectedPerson.Name,
+                    Age = SelectedPerson.Age,
+                    Salary = SelectedPerson.Salary,
+                    companyID = SelectedPerson.companyID
 
                 });
 

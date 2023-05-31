@@ -1,6 +1,7 @@
 ﻿using H571H2_HFT_2021222.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,10 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
                 Games.Add(new Game()
                 {
                     Name = SelectedGame.Name,
+                    
+                    Genre = SelectedGame.Genre,
+                    RecentConcurrentPeak = SelectedGame.RecentConcurrentPeak,
+                    companyID = SelectedGame.companyID
 
                 });
 

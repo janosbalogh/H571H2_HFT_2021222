@@ -1,6 +1,7 @@
 ﻿using H571H2_HFT_2021222.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,7 +112,10 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
             {
                 Companies.Add(new Company()
                 {
-                    Name = SelectedCompany.Name,
+                    Name = SelectedCompany.Name, 
+                    Country = SelectedCompany.Country,
+                    executiveID = SelectedCompany.executiveID,
+                    EmployeeCount = SelectedCompany.EmployeeCount
 
                 });
 
