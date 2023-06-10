@@ -68,6 +68,12 @@ namespace H571H2_HFT_2021222.Endpoint
                 endpoints.MapControllers();
                 endpoints.MapHub<SignalRHub>("/hub");
             });
+            
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:39141"));
         }
     }
 }
