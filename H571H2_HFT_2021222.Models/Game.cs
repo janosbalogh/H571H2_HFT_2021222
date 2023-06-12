@@ -17,7 +17,7 @@ namespace H571H2_HFT_2021222.Models
 
         [StringLength(240)]
         [Required]
-        public string Name { get; set; }
+        public string GameName { get; set; }
 
         [StringLength(240)]
         //S[Required]
@@ -61,7 +61,7 @@ namespace H571H2_HFT_2021222.Models
             string[] split = line.Split('#');
             GameID = int.Parse(split[0]);
             Genre = split[1].ToUpper();
-            Name = split[2];
+            GameName = split[2];
             companyID = int.Parse(split[3]);
             PositiveVote = int.Parse(split[4]);
             NegativeVote = int.Parse(split[5]);

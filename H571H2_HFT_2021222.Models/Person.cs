@@ -17,7 +17,7 @@ namespace H571H2_HFT_2021222.Models
 
         [StringLength(240)]
         [Required]
-        public string Name { get; set; }
+        public string PersonName { get; set; }
 
         //[Required]
         public int Age { get; set; }
@@ -39,7 +39,7 @@ namespace H571H2_HFT_2021222.Models
         {
             string[] split = line.Split('#');
             PersonID = int.Parse(split[0]);
-            Name = split[1];
+            PersonName = split[1];
             Salary = int.Parse(split[2]);
             Age = int.Parse(split[3]);
             companyID = int.Parse(split[4]);

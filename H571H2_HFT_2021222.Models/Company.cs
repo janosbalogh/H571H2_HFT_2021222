@@ -17,7 +17,7 @@ namespace H571H2_HFT_2021222.Models
 
         [StringLength(240)] 
         [Required]
-        public string Name { get; set; }
+        public string CompanyName { get; set; }
 
         [StringLength(240)]
         
@@ -42,7 +42,7 @@ namespace H571H2_HFT_2021222.Models
         {
             string[] split = line.Split('#');
             CompanyID = int.Parse(split[0]);
-            Name = split[1];
+            CompanyName = split[1];
             executiveID = int.Parse(split[2]);
             Country = split[3].ToUpper();
             EmployeeCount = int.Parse(split[4]);
