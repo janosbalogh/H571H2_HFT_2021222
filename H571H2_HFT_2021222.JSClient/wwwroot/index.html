@@ -6,11 +6,71 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+    <h1>Game Catalog</h1>
+
+
+    <div class="wrapper">
+        <button id="button1">BUTTON1</button>
+        <button id="button2">BUTTON1</button>
+        <button id="button3">BUTTON1</button>
+    </div>
 
 
 
 
+    <div id="formdiv">
+        <label>Game Name</label>
+        <input type="text" id="gamename" />
+        <button type="button" onclick="create()">Add Game</button>
+    </div>
 
+    <div id="updateformdiv">
+        <label>Game Name</label>
+        <input type="text" id="gamenametoupdate" />
+        <button type="button" onclick="update()">Update Game</button>
+    </div>
+
+
+    <div class="wrap">
+        <table id="table1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea">
+            </tbody>
+        </table>
+
+        <table id="table2">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea1">
+                
+            </tbody>
+        </table>
+        <table id="table3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea2">
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
