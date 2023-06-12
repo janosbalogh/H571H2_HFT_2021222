@@ -37,7 +37,7 @@
             
             <ListBox  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="LightGray"  Margin="5">
                 <Label Content="Company Name" Background="LightBlue"/>
-                <TextBox Text="{Binding companyView.SelectedCompany.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding companyView.SelectedCompany.CompanyName, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Company ID" Background="LightBlue"/>
                 <TextBox Text="{Binding companyView.SelectedCompany.CompanyID, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Employee count" Background="LightBlue"/>
@@ -52,7 +52,7 @@
             
             <ListBox VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"  Background="LightGray"  Margin="5">
                 <Label Content="Name" Background="LightBlue"/>
-                <TextBox Text="{Binding gameView.SelectedGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding gameView.SelectedGame.GameName, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="GameID" Background="LightBlue"/>
                 <TextBox Text="{Binding gameView.SelectedGame.GameID, UpdateSourceTrigger=PropertyChanged}"/>                
                 <Label Content="Genre" Background="LightBlue"/>
@@ -67,7 +67,7 @@
         <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding personView.PersonVisibility}" >            
             <ListBox VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"  Background="LightGray"  Margin="5">
                 <Label Content="Name" Background="LightBlue"/>
-                <TextBox Text="{Binding personView.SelectedPerson.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding personView.SelectedPerson.PersonName, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="NameID" Background="LightBlue"/>
                 <TextBox Text="{Binding personView.SelectedPerson.PersonID, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="CompanyID" Background="LightBlue"/>
@@ -87,7 +87,7 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Background="LightGray">
                         <StackPanel>
-                            <Label Content="{Binding Name, UpdateSourceTrigger=Explicit}" ContentStringFormat="Company Name: {0}"/>
+                            <Label Content="{Binding CompanyName, UpdateSourceTrigger=Explicit}" ContentStringFormat="Company Name: {0}"/>
                             <Label Content="{Binding Country, UpdateSourceTrigger=Explicit}" ContentStringFormat="Country: {0}"/>
                             <Label Content="{Binding EmployeeCount, UpdateSourceTrigger=Explicit}" ContentStringFormat="Employee Count: {0}"/>
                         </StackPanel>
@@ -100,9 +100,9 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1"  Background="LightGray">
                         <StackPanel>
-                            <Label Content="{Binding Name}" ContentStringFormat="Name: {0}" />
-                            <Label Content="{Binding Genre}" ContentStringFormat="Genre: {0}" />
-                            <Label Content="{Binding RecentConcurrentPeak}" ContentStringFormat="Peak players: {0}" />
+                            <Label Content="{Binding GameName, UpdateSourceTrigger=Explicit}" ContentStringFormat="Name: {0}" />
+                            <Label Content="{Binding Genre, UpdateSourceTrigger=Explicit}" ContentStringFormat="Genre: {0}" />
+                            <Label Content="{Binding RecentConcurrentPeak, UpdateSourceTrigger=Explicit}" ContentStringFormat="Peak players: {0}" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -113,9 +113,9 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1"  Background="LightGray">
                         <StackPanel>
-                            <Label Content="{Binding Name}" ContentStringFormat="Person Name: {0}" />
-                            <Label Content="{Binding Age}" ContentStringFormat="Age: {0}" />
-                            <Label Content="{Binding Salary}" ContentStringFormat="Salary: {0}" />
+                            <Label Content="{Binding PersonName,UpdateSourceTrigger=Explicit}" ContentStringFormat="Person Name: {0}" />
+                            <Label Content="{Binding Age, UpdateSourceTrigger=Explicit}" ContentStringFormat="Age: {0}" />
+                            <Label Content="{Binding Salary, UpdateSourceTrigger=Explicit}" ContentStringFormat="Salary: {0}" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -141,9 +141,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Content="Create Game" Padding="10" Margin="15" Grid.Row="0" Background="LightPink" Command="{Binding gameView.CreateGameCommand, UpdateSourceTrigger=Explicit}"/>
-            <Button Content="Update Game" Padding="10" Margin="15" Grid.Row="1" Background="LightPink" Command="{Binding gameView.UpdateGameCommand, UpdateSourceTrigger=Explicit}"/>
-            <Button Content="Delete Game" Padding="10" Margin="15" Grid.Row="2" Background="LightPink" Command="{Binding gameView.DeleteGameCommand, UpdateSourceTrigger=Explicit}"/>
+            <Button Content="Create Game" Padding="10" Margin="15" Grid.Row="0" Background="LightPink" Command="{Binding gameView.CreateGameCommand, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Update Game" Padding="10" Margin="15" Grid.Row="1" Background="LightPink" Command="{Binding gameView.UpdateGameCommand, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Delete Game" Padding="10" Margin="15" Grid.Row="2" Background="LightPink" Command="{Binding gameView.DeleteGameCommand, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>
         
@@ -153,9 +153,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Content="Create Person" Padding="10" Margin="15" Grid.Row="0" Background="LightPink" Command="{Binding personView.CreatePersonCommand, UpdateSourceTrigger=Explicit}"/>
-            <Button Content="Update Person" Padding="10" Margin="15" Grid.Row="1" Background="LightPink" Command="{Binding personView.UpdatePersonCommand, UpdateSourceTrigger=Explicit}"/>
-            <Button Content="Delete Person" Padding="10" Margin="15" Grid.Row="2" Background="LightPink" Command="{Binding personView.DeletePersonCommand, UpdateSourceTrigger=Explicit}"/>
+            <Button Content="Create Person" Padding="10" Margin="15" Grid.Row="0" Background="LightPink" Command="{Binding personView.CreatePersonCommand, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Update Person" Padding="10" Margin="15" Grid.Row="1" Background="LightPink" Command="{Binding personView.UpdatePersonCommand, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Delete Person" Padding="10" Margin="15" Grid.Row="2" Background="LightPink" Command="{Binding personView.DeletePersonCommand, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>
 
