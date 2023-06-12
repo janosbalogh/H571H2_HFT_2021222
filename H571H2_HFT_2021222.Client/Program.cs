@@ -21,7 +21,7 @@ namespace H571H2_HFT_2021222.Client
                 string country = Console.ReadLine();
                 Console.WriteLine("Enter the number of employees: ");
                 string employees = Console.ReadLine();
-                rest.Post(new Company() { Name = name, Country = country, EmployeeCount = int.Parse(employees) }, "company");
+                rest.Post(new Company() { CompanyName = name, Country = country, EmployeeCount = int.Parse(employees) }, "company");
             }
             else if (entity == "Game")
             {
@@ -31,7 +31,7 @@ namespace H571H2_HFT_2021222.Client
                 string genre = Console.ReadLine();
                 Console.WriteLine("Enter the average player number: ");
                 int average = int.Parse(Console.ReadLine());
-                rest.Post(new Game() { Name = name, Genre = genre, AverageForever = average }, "game");
+                rest.Post(new Game() { GameName = name, Genre = genre, AverageForever = average }, "game");
             }
             else if (entity == "Person")
             {
@@ -41,7 +41,7 @@ namespace H571H2_HFT_2021222.Client
                 int age = int.Parse(Console.ReadLine());
                 Console.WriteLine("Enter the person's salary: ");
                 int salary = int.Parse(Console.ReadLine());
-                rest.Post(new Person() { Name = name, Age = age, Salary =salary }, "peron");
+                rest.Post(new Person() { PersonName = name, Age = age, Salary =salary }, "peron");
             }
         }
         static void List(string entity)
@@ -52,7 +52,7 @@ namespace H571H2_HFT_2021222.Client
                 Console.WriteLine("Id" + "\t" + "Name");
                 foreach (var item in companies)
                 {
-                    Console.WriteLine(item.CompanyID + "\t" + item.Name);
+                    Console.WriteLine(item.CompanyID + "\t" + item.CompanyName);
                 }
             }
             else if (entity == "Game")
@@ -61,7 +61,7 @@ namespace H571H2_HFT_2021222.Client
                 Console.WriteLine("Id" + "\t" + "Name");
                 foreach (var item in games)
                 {
-                    Console.WriteLine(item.GameID + "\t" + item.Name);
+                    Console.WriteLine(item.GameID + "\t" + item.GameName);
                 }
             }
             else if (entity == "Person")
@@ -70,7 +70,7 @@ namespace H571H2_HFT_2021222.Client
                 Console.WriteLine("Id" + "\t" + "Name");
                 foreach (var item in people)
                 {
-                    Console.WriteLine(item.PersonID + "\t" + item.Name);
+                    Console.WriteLine(item.PersonID + "\t" + item.PersonName);
                 }
             }
             Console.ReadLine();
@@ -83,9 +83,9 @@ namespace H571H2_HFT_2021222.Client
                 Console.Write("Enter a Company's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Company one = rest.Get<Company>(id, "company");
-                Console.Write($"New name [old: {one.Name}]: ");
+                Console.Write($"New name [old: {one.CompanyName}]: ");
                 string name = Console.ReadLine();
-                one.Name = name;
+                one.CompanyName = name;
                 rest.Put(one, "company");
             }
             else if (entity == "Game")
@@ -93,9 +93,9 @@ namespace H571H2_HFT_2021222.Client
                 Console.Write("Enter Game's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Game one = rest.Get<Game>(id, "game");
-                Console.Write($"New name [old: {one.Name}]: ");
+                Console.Write($"New name [old: {one.GameName}]: ");
                 string name = Console.ReadLine();
-                one.Name = name;
+                one.GameName = name;
                 rest.Put(one, "game");
             }
             else if (entity == "Person")
@@ -103,9 +103,9 @@ namespace H571H2_HFT_2021222.Client
                 Console.Write("Enter Person's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Person one = rest.Get<Person>(id, "person");
-                Console.Write($"New name [old: {one.Name}]: ");
+                Console.Write($"New name [old: {one.PersonName}]: ");
                 string name = Console.ReadLine();
-                one.Name = name;
+                one.PersonName = name;
                 rest.Put(one, "person");
             }
         }

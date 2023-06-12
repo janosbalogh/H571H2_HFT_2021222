@@ -27,7 +27,7 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
                 {
                     selectedGame = new Game()
                     {
-                        Name = value.Name,
+                        GameName = value.GameName,
                         GameID = value.GameID,
                         Genre = value.Genre,
                         RecentConcurrentPeak = value.RecentConcurrentPeak,
@@ -82,7 +82,7 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
             {
                 Games.Add(new Game()
                 {
-                    Name = SelectedGame.Name,
+                    GameName = SelectedGame.GameName,
                     
                     Genre = SelectedGame.Genre,
                     RecentConcurrentPeak = SelectedGame.RecentConcurrentPeak,

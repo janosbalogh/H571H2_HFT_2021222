@@ -15,7 +15,6 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
     public class PersonViewModel:ObservableRecipient
     {
         public RestCollection<Person> People { get; set; }
-
         private Person selectedPerson;
 
         public Person SelectedPerson
@@ -27,7 +26,7 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
                 {
                     selectedPerson = new Person()
                     {
-                        Name = value.Name,
+                        PersonName = value.PersonName,
                         PersonID = value.PersonID,
                         Age = value.Age,
                         Salary = value.Salary,
@@ -80,7 +79,7 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
             {
                 People.Add(new Person()
                 {
-                    Name = SelectedPerson.Name,
+                    PersonName = SelectedPerson.PersonName,
                     Age = SelectedPerson.Age,
                     Salary = SelectedPerson.Salary,
                     companyID = SelectedPerson.companyID

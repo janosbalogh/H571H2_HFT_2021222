@@ -26,7 +26,7 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
                 {
                     selectedCompany = new Company()
                     {
-                        Name = value.Name,
+                        CompanyName = value.CompanyName,
                         CompanyID = value.CompanyID,
                         Country = value.Country,
                         executiveID = value.executiveID,
@@ -70,49 +70,14 @@ namespace H571H2_HFT_2021222.WpfClient.ViewModels
             set { SetProperty(ref updateCompanyVisibility, value); }
         }
 
-        //private int lastActorId;
-
-        //public int LastActorId
-        //{
-        //    get { return lastActorId; }
-        //    set { SetProperty(ref lastActorId, value); }
-        //}
-
         public CompanyViewModel()
         {
-            //CreateCompanyCommand = new RelayCommand(
-            //    () => Companies.Add(new Company()
-            //    {
-            //        Name = SelectedCompany.Name,
-            //        executiveID = SelectedCompany.executiveID
-            //        //TODO: Add the rest of the properties
-            //    }));
-
-            //DeleteCompanyCommand = new RelayCommand(() =>
-            //{
-            //    Companies.Delete(SelectedCompany.CompanyID);
-            //    //TODO ????
-            //},
-            //() =>
-            //{
-            //    return SelectedCompany != null;
-            //});
-
-
-            //UpdateCompanyCommand = new RelayCommand(
-            //() => {
-
-            //},
-            //() => SelectedCompany.CompanyID!= 0);            
-
-            //SelectedCompany = new Company();
-
 
             CreateCompanyCommand = new RelayCommand(() =>
             {
                 Companies.Add(new Company()
                 {
-                    Name = SelectedCompany.Name, 
+                    CompanyName = SelectedCompany.CompanyName, 
                     Country = SelectedCompany.Country,
                     executiveID = SelectedCompany.executiveID,
                     EmployeeCount = SelectedCompany.EmployeeCount

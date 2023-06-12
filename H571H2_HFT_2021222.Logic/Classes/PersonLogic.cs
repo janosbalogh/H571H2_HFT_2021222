@@ -47,7 +47,7 @@ namespace H571H2_HFT_2021222.Logic.Classes
             return from x in personRepository.ReadAll()
                    where x.Company.EmployeeCount >= 1000
                    select new KeyValuePair<string, int>
-                   (x.Name, x.Salary);
+                   (x.PersonName, x.Salary);
         }
         
     }

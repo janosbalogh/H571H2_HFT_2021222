@@ -31,12 +31,12 @@ namespace H571H2_HFT_2021222.Test
             
             mockGameRepo.Setup(c => c.ReadAll()).Returns(new List<Game>()
             {
-                new Game("1#moba#Dota 2#1#1437883#285737#35726#1523#0#0#546508"){ Company = new Company("1#Valve#1#USA#360"){ Executive = new Person(){ Name ="Gabe Newell", Age = 56} }},
-                new Game("2#fps#Counter-Strike: Global Offensive#1#5619875#749716#30200#766#0#0#730849"){ Company = new Company("1#Valve#1#USA#360"){ Executive = new Person(){ Name ="Gabe Newell", Age = 56 } }},
-                new Game("3#battle royale#PUBG: BATTLEGROUNDS#2#1126362#883021#22329#778#0#0#407073"){Company = new Company("2#KRAFTON, Inc.#2#South Korea#2100"){ Executive = new Person(){ Name ="Kim Chang-han" , Age = 45} }},
-                new Game("4#survival#Rust#3#676194#101067#21374#1332#3999#3999#82414"){ Company =new Company("3#Facepunch Studios#3#UK#20"){ Executive = new Person(){ Name ="Garry Newman", Age = 60 } }},
-                new Game("5#sports, driving#Rocket League#4#489784#61605#15582#452#0#0#38236"){ Company = new Company("4#Psyonix LLC#4#USA#189"){ Executive = new Person(){ Name ="Dave Hagewood", Age = 53} }},
-                new Game("6#fps#Tom Clancy's Rainbow Six Siege#5#915089#135174#13570#453#1999#1999#55863"){ Company = new Company("5#Ubisoft Montreal#5#Canada#2300"){ Executive = new Person(){ Name ="Yannis Mallat", Age = 39 } }}
+                new Game("1#moba#Dota 2#1#1437883#285737#35726#1523#0#0#546508"){ Company = new Company("1#Valve#1#USA#360"){ Executive = new Person(){ PersonName ="Gabe Newell", Age = 56} }},
+                new Game("2#fps#Counter-Strike: Global Offensive#1#5619875#749716#30200#766#0#0#730849"){ Company = new Company("1#Valve#1#USA#360"){ Executive = new Person(){ PersonName ="Gabe Newell", Age = 56 } }},
+                new Game("3#battle royale#PUBG: BATTLEGROUNDS#2#1126362#883021#22329#778#0#0#407073"){Company = new Company("2#KRAFTON, Inc.#2#South Korea#2100"){ Executive = new Person(){ PersonName ="Kim Chang-han" , Age = 45} }},
+                new Game("4#survival#Rust#3#676194#101067#21374#1332#3999#3999#82414"){ Company =new Company("3#Facepunch Studios#3#UK#20"){ Executive = new Person(){ PersonName ="Garry Newman", Age = 60 } }},
+                new Game("5#sports, driving#Rocket League#4#489784#61605#15582#452#0#0#38236"){ Company = new Company("4#Psyonix LLC#4#USA#189"){ Executive = new Person(){ PersonName ="Dave Hagewood", Age = 53} }},
+                new Game("6#fps#Tom Clancy's Rainbow Six Siege#5#915089#135174#13570#453#1999#1999#55863"){ Company = new Company("5#Ubisoft Montreal#5#Canada#2300"){ Executive = new Person(){ PersonName ="Yannis Mallat", Age = 39 } }}
 
             }.AsQueryable());
 
@@ -58,7 +58,7 @@ namespace H571H2_HFT_2021222.Test
         [Test]
         public void CreateCompany()
         {
-            var company = new Company() { Name = "Zen Studios" };
+            var company = new Company() { CompanyName = "Zen Studios" };
 
             companyLogic.Create(company);
 
@@ -67,7 +67,7 @@ namespace H571H2_HFT_2021222.Test
         [Test]
         public void CreateGame()
         {
-            var game = new Game() { Name = "3D Solitaire" };
+            var game = new Game() { GameName = "3D Solitaire" };
 
             gameLogic.Create(game);
 
@@ -76,7 +76,7 @@ namespace H571H2_HFT_2021222.Test
         [Test]
         public void CreatePerson()
         {
-            var person = new Person() { Name = "Kovács Béla" };
+            var person = new Person() { PersonName = "Kovács Béla" };
 
             personLogic.Create(person);
 
@@ -149,14 +149,14 @@ namespace H571H2_HFT_2021222.Test
         [Test]
         public void CreateCompanyWithInvalidInputTest()
         {
-            var test = new Company() { Name = "ASD" };
+            var test = new Company() { CompanyName = "ASD" };
 
 
             Assert.That(() => companyLogic.Create(test), Throws.TypeOf<ArgumentException>());
         }
         public void CreateGameWithInvalidInputTest()
         {
-            var test = new Game() { Name = "DSA" };
+            var test = new Game() { GameName = "DSA" };
 
 
             Assert.That(() => gameLogic.Create(test), Throws.TypeOf<ArgumentException>());

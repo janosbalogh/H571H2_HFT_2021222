@@ -19,7 +19,7 @@ namespace H571H2_HFT_2021222.Logic.Classes
 
         public void Create(Game item)
         {
-            if (item.Name.Length<4)
+            if (item.GameName.Length<4)
             {
                 throw new ArgumentException();
             }
@@ -49,7 +49,7 @@ namespace H571H2_HFT_2021222.Logic.Classes
         public IEnumerable<KeyValuePair<string, int>> Top3CompanyWithMostGames()
         {
             return (from x in gameRepository.ReadAll()
-                    group x by x.Company.Name into g
+                    group x by x.Company.CompanyName into g
                     orderby g.Count() descending
                     select new KeyValuePair<string, int>
                     (g.Key, g.Count())).Take(3);
@@ -59,14 +59,14 @@ namespace H571H2_HFT_2021222.Logic.Classes
         {
             return (from x in gameRepository.ReadAll()
                    where x.Genre.Contains("FPS")
-                   select new KeyValuePair<string, int>(x.Company.Name, x.companyID)).Distinct();
+                   select new KeyValuePair<string, int>(x.Company.CompanyName, x.companyID)).Distinct();
         }
 
         public IEnumerable<KeyValuePair<string, int>> CompanyNameLongerThan20()
         {
             return from x in gameRepository.ReadAll()
-                   where x.Company.Name.Length > 20
-                   group x by x.Company.Name into g
+                   where x.Company.CompanyName.Length > 20
+                   group x by x.Company.CompanyName into g
                    orderby g.Key.Length descending
                    select new KeyValuePair<string, int>
                    (g.Key, g.Key.Length);
@@ -77,7 +77,7 @@ namespace H571H2_HFT_2021222.Logic.Classes
             return (from x in gameRepository.ReadAll()                    
                     orderby x.AverageForever descending
                     select new KeyValuePair<string, int>
-                    (x.Company.Executive.Name, x.Company.Executive.Age)).Take(10).Distinct();
+                    (x.Company.Executive.PersonName, x.Company.Executive.Age)).Take(10).Distinct();
         }
     }
 }
