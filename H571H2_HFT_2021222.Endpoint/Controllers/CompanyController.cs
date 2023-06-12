@@ -45,7 +45,7 @@ namespace H571H2_HFT_2021222.Endpoint.Controller
 
         // POST api/<SteamController>
         [HttpPost]
-        public void Post([FromBody] Company value)
+        public void Create([FromBody] Company value)
         {
             this.logic.Create(value);
             this.hub.Clients.All.SendAsync("CompanyCreated", value);
