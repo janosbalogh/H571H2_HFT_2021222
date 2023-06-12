@@ -1,2 +1,84 @@
-﻿body {
+﻿
+table, th, td {
+    border: 3px solid black;
+    
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    background-color: lightblue;
+}
+
+#formdiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#formdiv label, button, input 
+{
+     margin: 10px;
+     padding: 7px;
+}
+
+#formdiv label 
+{
+     font-weight: bolder;
+}
+
+#updateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#updateformdiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+}
+
+#updateformdiv label {
+        font-weight: bolder;
+}
+
+
+table button {
+    padding: 2px;
+}
+
+.wrap {
+    text-align: center;
+}
+
+table {
+    width: 33%;
+    display: inline-table;
+    border-collapse: collapse;
+}
+
+td {
+    border: solid 1px #CCC;
+    padding: 10px;
+}
+
+#button1, #button2, #button3 {
+    width: 113%;
+}
+
+
+.wrapper {
+    text-align: center;
+    display: inline-block;
+    position: initial;
+    
+    top: 15%;
+    left: 0%;
+    right: 0%;
 }
