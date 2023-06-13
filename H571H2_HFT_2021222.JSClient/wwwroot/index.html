@@ -6,18 +6,91 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <h1>Game Catalog</h1>
+    <h2>NON-CRUD area</h2>
 
 
     <div class="wrapper">
-        <button id="button1">BUTTON1</button>
-        <button id="button2">BUTTON1</button>
-        <button id="button3">BUTTON1</button>
-        <button id="button3">BUTTON1</button>
-        <button id="button3">BUTTON1</button>
+        <button id="button1">Top3CompanyWithMostGames</button>
+        <button id="button2">CompaniesWithFpsGames</button>
+        <button id="button3">CompanyNameLongerThan20</button>
+        <button id="button4">ExecutiveSalaryAbove1000Employee</button>
+        <button id="button5">TOP10MostPlayedGamesExecutiveAge</button>
     </div>
 
 
+    <table id="noncrud">
+        <thead>
+            <tr>
+                <th>top3companywithmostgames</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="noncrudarea">
+        </tbody>
+    </table>
+
+
+    <table id="noncrud2">
+        <thead>
+            <tr>
+                <th>CompaniesWithFpsGames</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="noncrudarea2">
+        </tbody>
+    </table>
+
+    <table id="noncrud3">
+        <thead>
+            <tr>
+                <th>CompanyNameLongerThan20</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="noncrudarea3">
+        </tbody>
+    </table>
+
+    <table id="noncrud4">
+        <thead>
+            <tr>
+                <th>ExecutiveSalaryAbove1000Employee</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="noncrudarea4">
+        </tbody>
+    </table>
+
+    <table id="noncrud5">
+        <thead>
+            <tr>
+                <th>TOP10MostPlayedGamesExecutiveAge</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="noncrudarea5">
+        </tbody>
+    </table>
+
+
+    <h2>Editor area</h2>
     <div id="gameformdiv">
         <label>Game Name</label>
         <input type="text" id="gamename" />
@@ -27,14 +100,14 @@
         <label>Company Name</label>
         <input type="text" id="companyname" />
         <button type="button" onclick="createcompany()">Add Company</button>
-    </div>    
+    </div>
     <div id="personformdiv">
         <label>Person Name</label>
         <input type="text" id="personname" />
         <button type="button" onclick="createperson()">Add Person</button>
     </div>
 
-    
+
     <div id="updategameformdiv">
         <label>Game Name</label>
         <input type="text" id="gamenametoupdate" />
@@ -53,6 +126,7 @@
         <button type="button" onclick="updateperson()">Update Person</button>
     </div>
 
+    <h2>Data area</h2>
     <div class="wrap">
         <table id="gametable">
             <thead>

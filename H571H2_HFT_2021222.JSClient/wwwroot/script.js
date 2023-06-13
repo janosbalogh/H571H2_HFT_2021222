@@ -1,11 +1,14 @@
 ﻿let games = [];
 let companies = [];
 let people = [];
+let noncruddata = [];
+let noncruddata2 = [];
 
 let gameIdToUpdate = -1
 let companyIdToUpdate = -1
 let personIdToUpdate = -1
 
+const container = document.querySelector('#container')
 let connection = null;
 
 const gametable = document.getElementById('gametable');
@@ -20,6 +23,7 @@ const persontbody = persontable.tBodies[0];
 getgamedata();
 getcompanydata();
 getpersondata();
+//getnoncrud();
 
 setupSignalR();
 
@@ -324,3 +328,151 @@ function createperson() {
         .catch((error) => { console.error('Error:', error); });
 
 }
+
+
+/**NONCRUD 1*/
+const toggleButton = document.getElementById('button1');
+const myTable = document.getElementById('noncrud');
+
+toggleButton.addEventListener('click', function () {
+    myTable.classList.toggle('hidden');
+    getnoncrud();
+});
+
+
+async function getnoncrud() {
+    await fetch('http://localhost:38231/stat/top3companywithmostgames')
+        .then(x => x.json())
+        .then(y => {
+            noncruddata = y;
+            console.log(noncruddata);
+            displaynoncrud();
+        });
+}
+
+function displaynoncrud() {
+    noncrudarea.innerHTML = "";
+    noncruddata.forEach(t => {
+        document.getElementById('noncrudarea').innerHTML +=
+            "<tr><td>" + t.key + "</td><td>"
+            + t.value + "</td></tr>";
+    });
+}
+
+
+/**NONCRUD 2*/
+const toggleButton2 = document.getElementById('button2');
+const myTable2 = document.getElementById('noncrud2');
+
+toggleButton2.addEventListener('click', function () {
+    myTable2.classList.toggle('hidden');
+    getnoncrud2();
+});
+
+async function getnoncrud2() {
+    await fetch('http://localhost:38231/stat/companieswithfpsgames')
+        .then(x => x.json())
+        .then(y => {
+            noncruddata2 = y;
+            console.log(noncruddata2);
+            displaynoncrud2();
+        });
+}
+
+function displaynoncrud2() {
+    noncrudarea2.innerHTML = "";
+    noncruddata2.forEach(t => {
+        document.getElementById('noncrudarea2').innerHTML +=
+            "<tr><td>" + t.key + "</td><td>"
+            + t.value + "</td></tr>";
+    });
+}
+
+/**NONCRUD 3*/
+
+const toggleButton3 = document.getElementById('button3');
+const myTable3 = document.getElementById('noncrud3');
+
+toggleButton3.addEventListener('click', function () {
+    myTable3.classList.toggle('hidden');
+    getnoncrud3();
+});
+
+async function getnoncrud3() {
+    await fetch('http://localhost:38231/stat/companynamelongerthan20')
+        .then(x => x.json())
+        .then(y => {
+            noncruddata3 = y;
+            console.log(noncruddata3);
+            displaynoncrud3();
+        });
+}
+
+function displaynoncrud3() {
+    noncrudarea3.innerHTML = "";
+    noncruddata3.forEach(t => {
+        document.getElementById('noncrudarea3').innerHTML +=
+            "<tr><td>" + t.key + "</td><td>"
+            + t.value + "</td></tr>";
+    });
+}
+
+/**NONCRUD 4*/
+
+const toggleButton4 = document.getElementById('button4');
+const myTable4 = document.getElementById('noncrud4');
+
+toggleButton4.addEventListener('click', function () {
+    myTable4.classList.toggle('hidden');
+    getnoncrud4();
+}
+);
+
+async function getnoncrud4() {
+    await fetch('http://localhost:38231/stat/executivesalaryabove1000employee')
+        .then(x => x.json())
+        .then(y => {
+            noncruddata4 = y;
+            console.log(noncruddata4);
+            displaynoncrud4();
+        });
+}
+
+function displaynoncrud4() {
+    noncrudarea4.innerHTML = "";
+    noncruddata4.forEach(t => {
+        document.getElementById('noncrudarea4').innerHTML +=
+            "<tr><td>" + t.key + "</td><td>"
+            + t.value + "</td></tr>";
+    });
+}
+
+/**NONCRUD 5*/
+
+const toggleButton5 = document.getElementById('button5');
+const myTable5 = document.getElementById('noncrud5');
+
+toggleButton5.addEventListener('click', function () {
+    myTable5.classList.toggle('hidden');
+    getnoncrud5();
+});
+
+async function getnoncrud5() {
+    await fetch('http://localhost:38231/stat/top10mostplayedgamesexecutiveage')
+        .then(x => x.json())
+        .then(y => {
+            noncruddata5 = y;
+            console.log(noncruddata5);
+            displaynoncrud5();
+        });
+}
+
+function displaynoncrud5() {
+    noncrudarea5.innerHTML = "";
+    noncruddata5.forEach(t => {
+        document.getElementById('noncrudarea5').innerHTML +=
+            "<tr><td>" + t.key + "</td><td>"
+            + t.value + "</td></tr>";
+    });
+}
+
