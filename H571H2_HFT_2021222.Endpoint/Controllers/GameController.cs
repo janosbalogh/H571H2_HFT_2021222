@@ -49,7 +49,7 @@ namespace H571H2_HFT_2021222.Endpoint.Controller
         }
 
         // PUT api/<GameController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Game value)
         {
             this.logic.Update(value);
