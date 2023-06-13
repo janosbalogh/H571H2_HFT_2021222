@@ -13,26 +13,48 @@
         <button id="button1">BUTTON1</button>
         <button id="button2">BUTTON1</button>
         <button id="button3">BUTTON1</button>
+        <button id="button3">BUTTON1</button>
+        <button id="button3">BUTTON1</button>
     </div>
 
 
-
-
-    <div id="formdiv">
+    <div id="gameformdiv">
         <label>Game Name</label>
         <input type="text" id="gamename" />
-        <button type="button" onclick="create()">Add Game</button>
+        <button type="button" onclick="creategame()">Add Game</button>
+    </div>
+    <div id="companyformdiv">
+        <label>Company Name</label>
+        <input type="text" id="companyname" />
+        <button type="button" onclick="createcompany()">Add Company</button>
+    </div>    
+    <div id="personformdiv">
+        <label>Person Name</label>
+        <input type="text" id="personname" />
+        <button type="button" onclick="createperson()">Add Person</button>
     </div>
 
-    <div id="updateformdiv">
+    
+    <div id="updategameformdiv">
         <label>Game Name</label>
         <input type="text" id="gamenametoupdate" />
-        <button type="button" onclick="update()">Update Game</button>
+        <button type="button" onclick="updategame()">Update Game</button>
     </div>
 
+    <div id="updatecompanyformdiv">
+        <label>Company Name</label>
+        <input type="text" id="companynametoupdate" />
+        <button type="button" onclick="updatecompany()">Update Company</button>
+    </div>
+
+    <div id="updatepersonformdiv">
+        <label>Person Name</label>
+        <input type="text" id="personnametoupdate" />
+        <button type="button" onclick="updateperson()">Update Person</button>
+    </div>
 
     <div class="wrap">
-        <table id="table1">
+        <table id="gametable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -40,11 +62,11 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="resultarea">
+            <tbody id="gameresultarea">
             </tbody>
         </table>
 
-        <table id="table2">
+        <table id="companytable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -52,11 +74,10 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="resultarea1">
-                
+            <tbody id="companyresultarea">
             </tbody>
         </table>
-        <table id="table3">
+        <table id="persontable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -64,8 +85,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="resultarea2">
-               
+            <tbody id="personresultarea">
             </tbody>
         </table>
     </div>

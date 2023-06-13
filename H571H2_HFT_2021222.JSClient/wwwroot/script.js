@@ -2,25 +2,26 @@
 let companies = [];
 let people = [];
 
+let gameIdToUpdate = -1
+let companyIdToUpdate = -1
+let personIdToUpdate = -1
+
 let connection = null;
 
-const table1 = document.getElementById('table1');
-const tbody1 = table1.tBodies[0];
+const gametable = document.getElementById('gametable');
+const gametbody = gametable.tBodies[0];
 
-const table2 = document.getElementById('table2');
-const tbody2 = table2.tBodies[0];
+const companytable = document.getElementById('companytable');
+const companytbody = companytable.tBodies[0];
 
-const table3 = document.getElementById('table3');
-const tbody3 = table3.tBodies[0];
+const persontable = document.getElementById('persontable');
+const persontbody = persontable.tBodies[0];
 
-
-getdata();
+getgamedata();
 getcompanydata();
 getpersondata();
 
 setupSignalR();
-
-let gameIdToUpdate = -1
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
@@ -29,26 +30,37 @@ function setupSignalR() {
         .build();
 
     connection.on("GameCreated", (user, message) => {
-        getdata();
+        getgamedata();
     });
 
     connection.on("GameDeleted", (user, message) => {        
-        getdata();
+        getgamedata();
     });
 
     connection.on("GameUpdated", (user, message) => {
-        getdata();
+        getgamedata();
     });
     connection.on("CompanyCreated", (user, message) => {
-        getdata();
+        getcompanydata();
     });
 
     connection.on("CompanyDeleted", (user, message) => {
-        getdata();
+        getcompanydata();
     });
 
     connection.on("CompanyUpdated", (user, message) => {
-        getdata();
+        getcompanydata();
+    });
+    connection.on("PersonCreated", (user, message) => {
+        getpersondata();
+    });
+
+    connection.on("PersonDeleted", (user, message) => {
+        getpersondata();
+    });
+
+    connection.on("PersonUpdated", (user, message) => {
+        getpersondata();
     });
 
 
@@ -70,30 +82,31 @@ async function start() {
     }
 };
 
-//*         GAME DATA */
-async function getdata() {
+//***GAME DATA */
+async function getgamedata() {
     await fetch('http://localhost:38231/Game')
         .then(x => x.json())
         .then(y => {
             games = y;
             console.log(games);
-            display();
+            displaygame();
         });
 }
 
-function display() {
-    tbody1.innerHTML = "";
+function displaygame() {
+    gametbody.innerHTML = "";
     games.forEach(t => {
-        document.getElementById('resultarea').innerHTML +=
+        document.getElementById('gameresultarea').innerHTML +=
             "<tr><td>" + t.gameID + "</td><td>"
             + t.gameName + "</td><td>" +
-            `<button type="button" onclick="remove(${t.gameID})">Delete</button>` +
-            `<button type="button" onclick="showupdate(${t.gameID})">Update</button>`
+            `<button type="button" onclick="removegame(${t.gameID})">Delete</button>` +
+            `<button type="button" onclick="showupdategame(${t.gameID})">Update</button>`
             + "</td></tr>";
     });
 }
 
-//**COMPANY DATA*/
+
+//***COMPANY DATA*/
 async function getcompanydata() {
     await fetch('http://localhost:38231/Company')
         .then(x => x.json())
@@ -105,13 +118,13 @@ async function getcompanydata() {
 }
 
 function displaycompany() {
-    tbody2.innerHTML = "";
+    companytbody.innerHTML = "";
     companies.forEach(t => {
-        document.getElementById('resultarea1').innerHTML +=
+        document.getElementById('companyresultarea').innerHTML +=
             "<tr><td>" + t.companyID + "</td><td>"
             + t.companyName + "</td><td>" +
-            `<button type="button" onclick="remove(${t.companyID})">Delete</button>` +
-            `<button type="button" onclick="showupdate(${t.companyID})">Update</button>`
+            `<button type="button" onclick="removecompany(${t.companyID})">Delete</button>` +
+            `<button type="button" onclick="showupdatecompany(${t.companyID})">Update</button>`
             + "</td></tr>";
     });
 }
@@ -128,18 +141,20 @@ async function getpersondata() {
 }
 
 function displayperson() {
-    tbody3.innerHTML = "";
+    persontbody.innerHTML = "";
     people.forEach(t => {
-        document.getElementById('resultarea2').innerHTML +=
+        document.getElementById('personresultarea').innerHTML +=
             "<tr><td>" + t.personID + "</td><td>"
             + t.personName + "</td><td>" +
-            `<button type="button" onclick="remove(${t.personID})">Delete</button>` +
-            `<button type="button" onclick="showupdate(${t.personID})">Update</button>`
+            `<button type="button" onclick="removeperson(${t.personID})">Delete</button>` +
+            `<button type="button" onclick="showupdateperson(${t.personID})">Update</button>`
             + "</td></tr>";
     });
 }
 
-function remove(id) {
+
+/**game crud*/
+function removegame(id) {
     fetch('http://localhost:38231/game/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
@@ -154,8 +169,8 @@ function remove(id) {
 
 }
 
-function update() {
-    document.getElementById('updateformdiv').style.display = 'none';
+function updategame() {
+    document.getElementById('updategameformdiv').style.display = 'none';
     let name = document.getElementById('gamenametoupdate').value;
     fetch('http://localhost:38231/game', {
         method: 'PUT',
@@ -172,19 +187,134 @@ function update() {
 
 }
 
-function showupdate(id) {
+function showupdategame(id) {
     document.getElementById('gamenametoupdate').value = games.find(x => x['gameID'] == id)['gameName'];
-    document.getElementById('updateformdiv').style.display = 'flex';
+    document.getElementById('updategameformdiv').style.display = 'flex';
     gameIdToUpdate = id;
 }
 
-function create() {
+function creategame() {
     let name = document.getElementById('gamename').value;
     fetch('http://localhost:38231/game', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
             { gameName: name })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+/**company crud */
+function removecompany(id) {
+    fetch('http://localhost:38231/company/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', },
+        body: null
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+function updatecompany() {
+
+    document.getElementById('updatecompanyformdiv').style.display = 'none';
+    let name = document.getElementById('companynametoupdate').value;
+    fetch('http://localhost:38231/company', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { companyName: name, companyID: companyIdToUpdate })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+    
+}
+
+function showupdatecompany(id) {
+    document.getElementById('companynametoupdate').value = companies.find(x => x['companyID'] == id)['companyName'];
+    document.getElementById('updatecompanyformdiv').style.display = 'flex';
+    companyIdToUpdate = id;
+}
+
+function createcompany() {
+    let name = document.getElementById('companyname').value;
+    fetch('http://localhost:38231/company', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { companyName: name })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+/**person crud */
+function removeperson(id) {
+    fetch('http://localhost:38231/person/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', },
+        body: null
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+}
+
+function updateperson() {
+    document.getElementById('updatepersonformdiv').style.display = 'none';
+    let name = document.getElementById('companynametoupdate').value;
+    fetch('http://localhost:38231/company', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { personName: name, personID: personIdToUpdate })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+}
+
+function showupdateperson(id) {
+    document.getElementById('personnametoupdate').value = people.find(x => x['personID'] == id)['personName'];
+    document.getElementById('updatepersonformdiv').style.display = 'flex';
+    personIdToUpdate = id;
+}
+
+function createperson() {
+    let name = document.getElementById('personname').value;
+    fetch('http://localhost:38231/person', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { personName: name })
     })
         .then(response => response)
         .then(data => {

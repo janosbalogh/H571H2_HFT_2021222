@@ -33,7 +33,7 @@ th {
      font-weight: bolder;
 }
 
-#updateformdiv {
+#updategameformdiv, #updatecompanyformdiv, #updatepersonformdiv {
     display: none;
     flex-direction: column;
     margin-bottom: 20px;
